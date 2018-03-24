@@ -31,6 +31,7 @@ namespace PrismApp
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
-        }
+			containerRegistry.RegisterForNavigation<SpeakPage>();
+		}
     }
 }
