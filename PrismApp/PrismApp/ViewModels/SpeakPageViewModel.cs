@@ -20,11 +20,12 @@ namespace PrismApp.ViewModels
 		public DelegateCommand SpeakCommand { get; set; }
 		private readonly IPageDialogService _pageDialog;
 
-		public SpeakPageViewModel(INavigationService navigationService, IPageDialogService pageDialog)
+		public SpeakPageViewModel(INavigationService navigationService, IPageDialogService pageDialog, IBatteryService batteryService)
 			: base(navigationService)
 		{
 			SpeakCommand = new DelegateCommand(Speak);
 			_pageDialog = pageDialog;
+			_batteryService = batteryService;
 		}
 
 		public override void OnNavigatedTo(NavigationParameters parameters)
@@ -44,6 +45,7 @@ namespace PrismApp.ViewModels
 		}
 
 		private TimeSpan _time;
+		private readonly IBatteryService _batteryService;
 
 		public TimeSpan Time
 		{
@@ -55,7 +57,7 @@ namespace PrismApp.ViewModels
 
 		private async void Speak()
 		{
-			await _pageDialog.DisplayAlertAsync("My Alert", "The message " + Time.ToString(), "ok");
+			await _pageDialog.DisplayAlertAsync("My Alert", "The message " + _batteryService.GetBatteryStatus(), "ok");
 			await _pageDialog.DisplayActionSheetAsync("My Action Sheet", "cancel", "destroy");
 			//TODO: call service
 		}

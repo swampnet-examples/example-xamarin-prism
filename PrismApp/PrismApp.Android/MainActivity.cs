@@ -4,6 +4,8 @@ using Android.OS;
 using Prism;
 using Prism.Ioc;
 
+using PrismApp;
+
 namespace PrismApp.Droid
 {
     [Activity(Label = "PrismApp", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -25,8 +27,9 @@ namespace PrismApp.Droid
     {
         public void RegisterTypes(IContainerRegistry container)
         {
-            // Register any platform specific implementations
-        }
-    }
+			// Register any platform specific implementations
+			container.RegisterInstance<IBatteryService>(new BatteryService());
+		}
+	}
 }
 
