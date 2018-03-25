@@ -6,6 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="peanuts.jpg" />
+    <None Remove="Resources\southpark.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\peanuts.jpg" />
+    <EmbeddedResource Include="Resources\southpark.PNG" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
     <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.396" />
   </ItemGroup>

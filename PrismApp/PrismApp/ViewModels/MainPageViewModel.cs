@@ -16,9 +16,10 @@ namespace PrismApp.ViewModels
         {
             Title = "Main Page";
 	
-			Items.Add(new SomeItem() { Title = "One", Command = new DelegateCommand(NavigateToSpeakPage) });
-			Items.Add(new SomeItem() { Title = "Two", Command = new DelegateCommand(NavigateToSpeakPage) });
-			Items.Add(new SomeItem() { Title = "Three", Command = new DelegateCommand(NavigateToSpeakPage) });
+			for(int i = 0; i < 20; i++)
+			{
+				Items.Add(new SomeItem() { Title = $"pj  - {i:000}", Command = new DelegateCommand(NavigateToSpeakPage) });
+			}
 		}
 
 		private ObservableCollection<SomeItem> _items = new ObservableCollection<SomeItem>();

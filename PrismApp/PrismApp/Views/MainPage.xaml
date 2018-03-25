@@ -2,19 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:controls="clr-namespace:PrismApp"
+			 xmlns:local="clr-namespace:PrismApp"
              x:Class="PrismApp.Views.MainPage"
              Title="{Binding Title}">
 
-	<ScrollView>
-		<controls:RepeaterView ItemsSource="{Binding Items}">
-			<controls:RepeaterView.ItemTemplate>
-				<DataTemplate>
-					<ContentView Padding="5" HeightRequest="100">
-						<Button Text="{Binding Title}" Command="{Binding Command}" Margin="5"/>
-					</ContentView>
-				</DataTemplate>
-			</controls:RepeaterView.ItemTemplate>
-		</controls:RepeaterView>
-	</ScrollView>
+	<Grid>
+		<Image Source="{local:ImageResource PrismApp.Resources.peanuts.jpg}"/>
+		<ScrollView BackgroundColor="Transparent">
+			<controls:BindableStackLayout ItemsSource="{Binding Items}" BackgroundColor="Transparent">
+				<controls:BindableStackLayout.ItemTemplate>
+					<DataTemplate>
+						<ContentView Padding="5" HeightRequest="100">
+							<Button Text="{Binding Title}" Command="{Binding Command}" Margin="5" Opacity="0.9"/>
+						</ContentView>
+					</DataTemplate>
+				</controls:BindableStackLayout.ItemTemplate>
+			</controls:BindableStackLayout>
+		</ScrollView>
+	</Grid>
 
 </ContentPage>
