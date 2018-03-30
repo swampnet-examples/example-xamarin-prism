@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,11 @@ namespace PrismApp.ViewModels
 
 			Date = (DateTime)parameters["date"];
 			Time = (TimeSpan)parameters["time"];
+
+			Log.Information("OnNavigatedTo {page} - {Date} / {Time}",
+				GetType().Name,
+				Date,
+				Time);
 		}
 
 		private DateTime _date;

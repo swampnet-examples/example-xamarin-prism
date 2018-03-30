@@ -20,11 +20,12 @@ namespace PrismApp.EventSink
 		public static string Source { get; set; }
 		public static string SourceVersion { get; set; }
 
+		// Pinched from Swampnet.EvL
 		public static async Task PostAsync(Event e, string apiKey, string endpoint)
 		{
 			Validate(apiKey, endpoint);
 
-			using (var client = new HttpClient())
+			using (var client = new HttpClient()) // @TODO: Not recommended. Should use a static / singleton instance
 			{
 				client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 

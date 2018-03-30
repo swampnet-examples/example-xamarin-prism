@@ -29,6 +29,8 @@ namespace PrismApp
 				.WriteTo.EvlSink("", "https://swamp-evl.azurewebsites.net/events", "PrismApp")
 				.CreateLogger();
 
+			Log.Information("Start");
+
 			await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
@@ -38,6 +40,7 @@ namespace PrismApp
             containerRegistry.RegisterForNavigation<MainPage>();
 			containerRegistry.RegisterForNavigation<SpeakPage>();
 			containerRegistry.RegisterForNavigation<PostApiPage>();
+			containerRegistry.RegisterForNavigation<PrintLabelPage>();
 		}
     }
 }

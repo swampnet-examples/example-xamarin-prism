@@ -29,6 +29,7 @@ namespace PrismApp.Droid
         {
 			// Register any platform specific implementations
 			container.RegisterInstance<IBatteryService>(new BatteryService());
+			container.RegisterInstance<ILabelPrintService>(new LabelPrintService());
 		}
 	}
 }

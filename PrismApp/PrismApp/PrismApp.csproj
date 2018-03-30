@@ -7,11 +7,13 @@
 
   <ItemGroup>
     <None Remove="peanuts.jpg" />
+    <None Remove="Resources\sjsofa.JPG" />
     <None Remove="Resources\southpark.PNG" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\peanuts.jpg" />
+    <EmbeddedResource Include="Resources\sjsofa.JPG" />
     <EmbeddedResource Include="Resources\southpark.PNG" />
   </ItemGroup>
 
@@ -24,6 +26,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\PostApiPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PrintLabelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SpeakPage.xaml">

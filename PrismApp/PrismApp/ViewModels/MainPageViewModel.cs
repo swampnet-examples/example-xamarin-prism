@@ -17,14 +17,15 @@ namespace PrismApp.ViewModels
 		public MainPageViewModel(INavigationService navigationService) 
             : base (navigationService)
         {
-            Title = "Main Page";
+            Title = "Main Menu";
 	
-			for(int i = 0; i < 5; i++)
+			Items.Add(new SomeItem() { Title = "API", Command = new DelegateCommand(NavigateToApiPage) });
+			Items.Add(new SomeItem() { Title = "Print Label", Command = new DelegateCommand(NavigateToPrintLabelPage) });
+
+			for (int i = 0; i < 5; i++)
 			{
 				Items.Add(new SomeItem() { Title = $"pj  - {i:000}", Command = new DelegateCommand(NavigateToSpeakPage) });
 			}
-
-			Items.Add(new SomeItem() { Title = "API", Command = new DelegateCommand(NavigateToApiPage) });
 		}
 
 
@@ -34,6 +35,11 @@ namespace PrismApp.ViewModels
 		private async void NavigateToApiPage()
 		{
 			await NavigationService.NavigateAsync("PostApiPage");
+		}
+
+		private async void NavigateToPrintLabelPage()
+		{
+			await NavigationService.NavigateAsync("PrintLabelPage");
 		}
 
 		private async void NavigateToSpeakPage()

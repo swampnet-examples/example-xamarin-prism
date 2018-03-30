@@ -20,7 +20,7 @@
 				<Label Text="{Binding Time}" />
 			</StackLayout>
 
-			<Image Source="{local:ImageResource PrismApp.Resources.southpark.PNG}"/>
+			<Image Source="{local:ImageResource PrismApp.Resources.sjsofa.JPG}"/>
 		</StackLayout>
 	</ScrollView>
 </ContentPage>

@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-			 Title="EvL Test"
-             x:Class="PrismApp.Views.PostApiPage">
+			 Title="Zebra ZPL Test"
+             x:Class="PrismApp.Views.PrintLabelPage">
 	<StackLayout>
 		<Entry Text="{Binding Information}" />
-		<Button Command="{Binding BooshCommand}" Text="Boosh"/>
+		<Button Command="{Binding BooshCommand}" Text="Print"/>
 	</StackLayout>
 </ContentPage>
