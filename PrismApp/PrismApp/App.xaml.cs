@@ -5,6 +5,7 @@ using PrismApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Autofac;
+using Serilog;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PrismApp
@@ -24,7 +25,11 @@ namespace PrismApp
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+			Log.Logger = new LoggerConfiguration()
+				.WriteTo.EvlSink("", "https://swamp-evl.azurewebsites.net/events", "PrismApp")
+				.CreateLogger();
+
+			await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,6 +37,7 @@ namespace PrismApp
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
 			containerRegistry.RegisterForNavigation<SpeakPage>();
+			containerRegistry.RegisterForNavigation<PostApiPage>();
 		}
     }
 }
