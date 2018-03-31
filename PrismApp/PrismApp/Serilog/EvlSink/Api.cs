@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrismApp.EventSink
+namespace PrismApp.EvlSink
 {
 	/// <summary>
 	/// Helper class to aid calling the web api
@@ -29,12 +29,14 @@ namespace PrismApp.EventSink
 			{
 				client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-				var rs = await client.PostAsync(
-					endpoint,
-					new StringContent(
-						JsonConvert.SerializeObject(e),
-						Encoding.UTF8,
-						"application/json"));
+				var rs = await client
+					.PostAsync(
+						endpoint,
+						new StringContent(
+							JsonConvert.SerializeObject(e),
+							Encoding.UTF8,
+							"application/json"))
+					.ConfigureAwait(false);
 
 				rs.EnsureSuccessStatusCode();
 			}
@@ -55,12 +57,14 @@ namespace PrismApp.EventSink
 			{
 				client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-				var rs = await client.PostAsync(
-					endpoint + "/bulk",
-					new StringContent(
-						JsonConvert.SerializeObject(e),
-						Encoding.UTF8,
-						"application/json"));
+				var rs = await client
+					.PostAsync(
+						endpoint + "/bulk",
+						new StringContent(
+							JsonConvert.SerializeObject(e),
+							Encoding.UTF8,
+							"application/json"))
+					.ConfigureAwait(false);
 
 				rs.EnsureSuccessStatusCode();
 			}

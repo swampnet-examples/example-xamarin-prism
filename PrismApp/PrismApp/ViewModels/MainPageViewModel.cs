@@ -21,6 +21,7 @@ namespace PrismApp.ViewModels
 	
 			Items.Add(new SomeItem() { Title = "API", Command = new DelegateCommand(NavigateToApiPage) });
 			Items.Add(new SomeItem() { Title = "Print Label", Command = new DelegateCommand(NavigateToPrintLabelPage) });
+			Items.Add(new SomeItem() { Title = "Log History", Command = new DelegateCommand(NavigateToLogHistoryPage) });
 
 			for (int i = 0; i < 5; i++)
 			{
@@ -40,6 +41,11 @@ namespace PrismApp.ViewModels
 		private async void NavigateToPrintLabelPage()
 		{
 			await NavigationService.NavigateAsync("PrintLabelPage");
+		}
+
+		private async void NavigateToLogHistoryPage()
+		{
+			await NavigationService.NavigateAsync("LogHistoryPage");
 		}
 
 		private async void NavigateToSpeakPage()

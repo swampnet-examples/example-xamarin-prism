@@ -6,12 +6,16 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Autofac;
 using Serilog;
+using PrismApp.HistorySink;
+using System;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PrismApp
 {
     public partial class App : PrismApplication
     {
+		private ILogHistory _logHistory = new LogHistory();
+
         /* 
          * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
          * This imposes a limitation in which the App class must have a default constructor. 
@@ -26,6 +30,7 @@ namespace PrismApp
             InitializeComponent();
 
 			Log.Logger = new LoggerConfiguration()
+				.WriteTo.HistorySink(_logHistory)
 				.WriteTo.EvlSink("", "https://swamp-evl.azurewebsites.net/events", "PrismApp")
 				.CreateLogger();
 
@@ -36,11 +41,14 @@ namespace PrismApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
+			containerRegistry.RegisterInstance<ILogHistory>(_logHistory);
+
+			containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
 			containerRegistry.RegisterForNavigation<SpeakPage>();
 			containerRegistry.RegisterForNavigation<PostApiPage>();
 			containerRegistry.RegisterForNavigation<PrintLabelPage>();
+			containerRegistry.RegisterForNavigation<LogHistoryPage>();
 		}
     }
 }

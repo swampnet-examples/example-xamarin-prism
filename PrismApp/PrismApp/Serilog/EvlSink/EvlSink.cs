@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 using Serilog.Debugging;
 using System.Diagnostics;
 using System.Reflection;
-using PrismApp.EventSink;
 using PrismApp;
 
-namespace PrismApp.EventSink
+namespace PrismApp.EvlSink
 {
 	class EvlSink : PeriodicBatchingSink
 	{

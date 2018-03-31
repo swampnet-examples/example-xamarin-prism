@@ -1,4 +1,4 @@
-﻿using PrismApp.EventSink;
+﻿using PrismApp.EvlSink;
 using Serilog.Configuration;
 using System;
 using System.Collections.Generic;
