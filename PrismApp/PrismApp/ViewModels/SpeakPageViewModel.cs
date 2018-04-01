@@ -1,4 +1,5 @@
-﻿using Plugin.Media;
+﻿using Plugin.Connectivity;
+using Plugin.Media;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -37,11 +38,12 @@ namespace PrismApp.ViewModels
 
 			Date = (DateTime)parameters["date"];
 			Time = (TimeSpan)parameters["time"];
-
-			Log.Information("OnNavigatedTo {page} - {Date} / {Time}",
+			
+			Log.Information("OnNavigatedTo {page} - {Date} / {Time} (IsConnected: {isConnected})",
 				GetType().Name,
 				Date,
-				Time);
+				Time,
+				CrossConnectivity.Current.IsConnected);
 		}
 
 		private DateTime _date;
