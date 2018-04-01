@@ -6,6 +6,10 @@ using Prism.Ioc;
 
 using PrismApp;
 
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
+using Android.Runtime;
+
 namespace PrismApp.Droid
 {
     [Activity(Label = "PrismApp", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -18,12 +22,21 @@ namespace PrismApp.Droid
 
             base.OnCreate(bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+			Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+
+			global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
         }
-    }
 
-    public class AndroidInitializer : IPlatformInitializer
+		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+		{
+			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+		}
+	}
+
+	public class AndroidInitializer : IPlatformInitializer
     {
         public void RegisterTypes(IContainerRegistry container)
         {
