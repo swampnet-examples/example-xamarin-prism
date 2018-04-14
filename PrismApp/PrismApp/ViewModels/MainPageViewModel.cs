@@ -38,6 +38,20 @@ namespace PrismApp.ViewModels
 
 		public ObservableCollection<SomeItem> Items => _items;
 
+		public override async void OnNavigatedTo(INavigationParameters parameters)
+		{
+			var x = parameters.GetValue<string>("destination");
+			if (!string.IsNullOrEmpty(x))
+			{
+				await NavigationService.NavigateAsync(x);
+				//await _pageDialog.DisplayAlertAsync("NavigationParameters", x, "ok");
+			}
+		}
+
+		public override void OnNavigatedFrom(INavigationParameters parameters)
+		{
+			base.OnNavigatedFrom(parameters);
+		}
 
 		private async void NavigateToApiPage()
 		{
@@ -56,7 +70,9 @@ namespace PrismApp.ViewModels
 
 		private async void NavigateToModalPage()
 		{
-			await NavigationService.NavigateAsync("ModalPage");
+			await NavigationService.NavigateAsync("ModalPage", new NavigationParameters{
+				{ "destination", "LogHistoryPage" }
+			});
 		}
 
 		private async void NavigateToSpeakPage()

@@ -5,10 +5,11 @@
 			 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismApp.Views.ModalPage"
-				 CloseWhenBackgroundIsClicked="False"
-			Padding="50">
-	<StackLayout HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand"  BackgroundColor="White">
-		<Label Text="Some Modal view" Margin="20"/>
-		<Button Text="Close" Command="{Binding CloseCommand}"/>
+			CloseWhenBackgroundIsClicked="False"				 
+			Padding="100">
+	<StackLayout HorizontalOptions="Fill"  VerticalOptions="Fill" BackgroundColor="LightCyan">
+		<Label Text="{Binding Destination}" Margin="20"/>
+		<Button Text="Ok" Command="{Binding CloseCommand}"/>
+		<Button Text="Cancel" Command="{Binding CancelCommand}"/>
 	</StackLayout>
 </popup:PopupPage>

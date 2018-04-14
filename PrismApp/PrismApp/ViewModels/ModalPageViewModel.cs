@@ -7,24 +7,49 @@ using System.Linq;
 
 namespace PrismApp.ViewModels
 {
-	public class ModalPageViewModel : BindableBase
+	public class ModalPageViewModel : ViewModelBase
 	{
-		private DelegateCommand _closeCommand;
-		private readonly INavigationService _navigationService;
+		private string _destination;
 
 		public ModalPageViewModel(INavigationService navigationService)
+			: base(navigationService)
         {
-			_navigationService = navigationService;
-			_closeCommand = new DelegateCommand(Close);
 		}
 
-		public DelegateCommand CloseCommand => _closeCommand;
+
+		public override void OnNavigatedTo(INavigationParameters parameters)
+		{
+			Destination = parameters.GetValue<string>("destination");
+		}
+
+
+		public string Destination
+		{
+			set { SetProperty(ref _destination, value); }
+			get { return _destination; }
+		}
+
+
+		public DelegateCommand CloseCommand => new DelegateCommand(Close);
+
+
+		public DelegateCommand CancelCommand => new DelegateCommand(async () => await NavigationService.GoBackAsync());
+
 
 		private async void Close()
 		{
-			await _navigationService.GoBackAsync(new NavigationParameters{
-				{ "message", "Hello from the Popup View" }
-			});
+			if (!string.IsNullOrEmpty(_destination))
+			{
+				await NavigationService.GoBackAsync(
+					new NavigationParameters()
+					{
+						{ "destination", _destination }
+					});
+			}
+			else
+			{
+				await NavigationService.GoBackAsync();
+			}
 		}
 	}
 }

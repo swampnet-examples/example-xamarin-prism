@@ -9,5 +9,11 @@ namespace PrismApp.Views
         {
             InitializeComponent();
         }
-    }
+
+		protected override bool OnBackButtonPressed()
+		{
+			// Disable back buitton
+			return true;
+		}
+	}
 }
