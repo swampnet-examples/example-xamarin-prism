@@ -24,6 +24,7 @@ namespace PrismApp.Droid
 
 			Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
 			ZXing.Net.Mobile.Forms.Android.Platform.Init();
+			Rg.Plugins.Popup.Popup.Init(this, bundle);
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));

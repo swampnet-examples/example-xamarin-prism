@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+			 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismApp.Views.ModalPage"
-			 Padding="100"
-			 >
-	<Label Text="Some Modal view"/>
-</ContentPage>
+				 CloseWhenBackgroundIsClicked="False"
+			Padding="50">
+	<StackLayout HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand"  BackgroundColor="White">
+		<Label Text="Some Modal view" Margin="20"/>
+		<Button Text="Close" Command="{Binding CloseCommand}"/>
+	</StackLayout>
+</popup:PopupPage>

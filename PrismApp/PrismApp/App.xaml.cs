@@ -8,6 +8,7 @@ using Prism.Autofac;
 using Serilog;
 using PrismApp.HistorySink;
 using System;
+using Prism.Plugin.Popups;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PrismApp
@@ -35,13 +36,14 @@ namespace PrismApp
 				.CreateLogger();
 
 			Log.Information("Start");
-
+			
 			await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
 			containerRegistry.RegisterInstance<ILogHistory>(_logHistory);
+			containerRegistry.RegisterPopupNavigationService();
 
 			containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();

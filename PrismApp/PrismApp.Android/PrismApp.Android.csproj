@@ -60,6 +60,9 @@
     <PackageReference Include="LinkOS_Xamarin_SDK">
       <Version>1.1.75</Version>
     </PackageReference>
+    <PackageReference Include="Prism.Plugin.Popups">
+      <Version>2.0.0.528-pre</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>3.1.1</Version>
     </PackageReference>
@@ -72,7 +75,7 @@
     <PackageReference Include="Xamarin.Android.Support.v4" Version="25.4.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="25.4.0.2" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="25.4.0.2" />
-    <PackageReference Include="Prism.Autofac.Forms" Version="7.0.0.396" />
+    <PackageReference Include="Prism.Autofac.Forms" Version="7.1.0.123-pre" />
     <PackageReference Include="ZXing.Net.Mobile">
       <Version>2.4.1</Version>
     </PackageReference>

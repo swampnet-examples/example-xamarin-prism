@@ -6,18 +6,22 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using Prism.Plugin.Popups;
+using Prism.Services;
 
 namespace PrismApp.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
 		private readonly ObservableCollection<SomeItem> _items = new ObservableCollection<SomeItem>();
+		private readonly IPageDialogService _pageDialog;
 
-
-		public MainPageViewModel(INavigationService navigationService) 
+		public MainPageViewModel(INavigationService navigationService, IPageDialogService pageDialog) 
             : base (navigationService)
         {
-            Title = "Main Menu";
+			_pageDialog = pageDialog;
+
+			Title = "Main Menu";
 	
 			Items.Add(new SomeItem() { Title = "API", Command = new DelegateCommand(NavigateToApiPage) });
 			Items.Add(new SomeItem() { Title = "Print Label", Command = new DelegateCommand(NavigateToPrintLabelPage) });
@@ -28,6 +32,7 @@ namespace PrismApp.ViewModels
 			{
 				Items.Add(new SomeItem() { Title = $"pj  - {i:000}", Command = new DelegateCommand(NavigateToSpeakPage) });
 			}
+
 		}
 
 
@@ -51,7 +56,7 @@ namespace PrismApp.ViewModels
 
 		private async void NavigateToModalPage()
 		{
-			await NavigationService.NavigateAsync("ModalPage", useModalNavigation: true);
+			await NavigationService.NavigateAsync("ModalPage");
 		}
 
 		private async void NavigateToSpeakPage()
