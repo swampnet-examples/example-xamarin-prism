@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 
 using Plugin.CurrentActivity;
+using ZXing.Mobile;
 
 namespace PrismApp.Droid
 {
@@ -33,6 +34,7 @@ namespace PrismApp.Droid
 		{
 			base.OnCreate();
 			RegisterActivityLifecycleCallbacks(this);
+			MobileBarcodeScanner.Initialize(this);
 		}
 
 		public override void OnTerminate()

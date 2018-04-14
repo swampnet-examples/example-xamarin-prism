@@ -8,6 +8,7 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PrismApp.ViewModels
@@ -24,12 +25,17 @@ namespace PrismApp.ViewModels
 		public DelegateCommand SpeakCommand { get; set; }
 		private readonly IPageDialogService _pageDialog;
 
-		public SpeakPageViewModel(INavigationService navigationService, IPageDialogService pageDialog, IBatteryService batteryService)
+		public SpeakPageViewModel(
+			INavigationService navigationService,
+			IPageDialogService pageDialog,
+			IBatteryService batteryService,
+			IScanBarcode scanBarcode)
 			: base(navigationService)
 		{
 			SpeakCommand = new DelegateCommand(Speak);
 			_pageDialog = pageDialog;
 			_batteryService = batteryService;
+			_scanBarcode = scanBarcode;
 		}
 
 		public override void OnNavigatedTo(NavigationParameters parameters)
@@ -56,6 +62,7 @@ namespace PrismApp.ViewModels
 
 		private TimeSpan _time;
 		private readonly IBatteryService _batteryService;
+		private readonly IScanBarcode _scanBarcode;
 
 		public TimeSpan Time
 		{
@@ -72,41 +79,53 @@ namespace PrismApp.ViewModels
 
 			try
 			{
-				await CrossMedia.Current.Initialize();
-
-				if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-				{
-					await _pageDialog.DisplayAlertAsync("No camera", ":( No camera available.", "ok");
-					return;
-				}
-
-				var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-				{
-					//Directory = "Sample",
-					//Name = "test.jpg",
-					SaveMetaData = true,
-					SaveToAlbum = true
-				});
-
-				if (file == null)
-					return;
-
-				Log.Information("File location {path}", file.Path);
-				await _pageDialog.DisplayAlertAsync("File Location", file.Path, "ok");
-
-								
-				var imageSource = ImageSource.FromStream(() =>
-				{
-					var stream = file.GetStream();
-					return stream;
-				});
-
+				await Scan();
+				//await Photo();
 			}
 			catch (Exception ex)
 			{
 				await _pageDialog.DisplayAlertAsync("Error", ex.Message, "oops");
 				Log.Error(ex, ex.Message);
 			}
+		}
+
+
+		private async Task Scan()
+		{
+			var code = await _scanBarcode.Scan();
+			await _pageDialog.DisplayAlertAsync("Result", code, "ok");
+		}
+
+		private async Task Photo()
+		{
+			await CrossMedia.Current.Initialize();
+
+			if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+			{
+				await _pageDialog.DisplayAlertAsync("No camera", ":( No camera available.", "ok");
+				return;
+			}
+
+			var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+			{
+				//Directory = "Sample",
+				//Name = "test.jpg",
+				SaveMetaData = true,
+				SaveToAlbum = true
+			});
+
+			if (file == null)
+				return;
+
+			Log.Information("File location {path}", file.Path);
+			await _pageDialog.DisplayAlertAsync("File Location", file.Path, "ok");
+
+
+			var imageSource = ImageSource.FromStream(() =>
+			{
+				var stream = file.GetStream();
+				return stream;
+			});
 		}
 	}
 }

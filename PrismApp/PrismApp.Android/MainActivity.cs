@@ -23,6 +23,7 @@ namespace PrismApp.Droid
             base.OnCreate(bundle);
 
 			Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+			ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App(new AndroidInitializer()));
@@ -43,6 +44,8 @@ namespace PrismApp.Droid
 			// Register any platform specific implementations
 			container.RegisterInstance<IBatteryService>(new BatteryService());
 			container.RegisterInstance<ILabelPrintService>(new LabelPrintService());
+			container.RegisterInstance<IScanBarcode>(new ScanBarcode());
+			
 		}
 	}
 }

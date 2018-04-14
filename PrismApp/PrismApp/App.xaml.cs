@@ -31,7 +31,7 @@ namespace PrismApp
 
 			Log.Logger = new LoggerConfiguration()
 				.WriteTo.HistorySink(_logHistory)
-				.WriteTo.EvlSink("", "https://swamp-evl.azurewebsites.net/events", "PrismApp")
+				.WriteTo.EvlSink("3B94A54F-FDF2-4AFF-AA80-A35ED5836841", "https://swamp-evl.azurewebsites.net/events", "PrismApp")
 				.CreateLogger();
 
 			Log.Information("Start");
@@ -49,6 +49,7 @@ namespace PrismApp
 			containerRegistry.RegisterForNavigation<PostApiPage>();
 			containerRegistry.RegisterForNavigation<PrintLabelPage>();
 			containerRegistry.RegisterForNavigation<LogHistoryPage>();
+			containerRegistry.RegisterForNavigation<ModalPage>();
 		}
     }
 }
