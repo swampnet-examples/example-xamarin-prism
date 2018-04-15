@@ -9,6 +9,7 @@
 			Padding="100">
 	<StackLayout HorizontalOptions="Fill"  VerticalOptions="Fill" BackgroundColor="LightCyan">
 		<Label Text="{Binding Destination}" Margin="20"/>
+		<Entry x:Name="_pin" Text="{Binding Pin}" Keyboard="Telephone" Margin="5"/>
 		<Button Text="Ok" Command="{Binding CloseCommand}"/>
 		<Button Text="Cancel" Command="{Binding CancelCommand}"/>
 	</StackLayout>

@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using Prism.Plugin.Popups;
 using Prism.Services;
+using System.Threading.Tasks;
+using Serilog;
 
 namespace PrismApp.ViewModels
 {
@@ -38,15 +40,6 @@ namespace PrismApp.ViewModels
 
 		public ObservableCollection<SomeItem> Items => _items;
 
-		public override async void OnNavigatedTo(INavigationParameters parameters)
-		{
-			var x = parameters.GetValue<string>("destination");
-			if (!string.IsNullOrEmpty(x))
-			{
-				await NavigationService.NavigateAsync(x);
-				//await _pageDialog.DisplayAlertAsync("NavigationParameters", x, "ok");
-			}
-		}
 
 		public override void OnNavigatedFrom(INavigationParameters parameters)
 		{
@@ -70,9 +63,10 @@ namespace PrismApp.ViewModels
 
 		private async void NavigateToModalPage()
 		{
-			await NavigationService.NavigateAsync("ModalPage", new NavigationParameters{
-				{ "destination", "LogHistoryPage" }
-			});
+			await AuthenticateAsync(
+				async () => await NavigationService.NavigateAsync("PostApiPage"),
+				async () => await NavigationService.NavigateAsync("LogHistoryPage")
+				);
 		}
 
 		private async void NavigateToSpeakPage()

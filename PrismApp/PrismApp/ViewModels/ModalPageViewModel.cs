@@ -9,47 +9,53 @@ namespace PrismApp.ViewModels
 {
 	public class ModalPageViewModel : ViewModelBase
 	{
-		private string _destination;
+		private Action _onAuth;
+		private Action _onNoAuth;
 
 		public ModalPageViewModel(INavigationService navigationService)
 			: base(navigationService)
         {
+			//Pin = "0123";
 		}
 
 
 		public override void OnNavigatedTo(INavigationParameters parameters)
 		{
-			Destination = parameters.GetValue<string>("destination");
+			_onAuth = parameters.GetValue<Action>("authenticated");
+			_onNoAuth = parameters.GetValue<Action>("failed-authentication");
+		}
+
+		private string _pin;
+
+		public string Pin
+		{
+			get { return _pin; }
+			set { SetProperty(ref _pin, value); }
 		}
 
 
-		public string Destination
+		public DelegateCommand CloseCommand => new DelegateCommand(Authenticated);
+
+
+		public DelegateCommand CancelCommand => new DelegateCommand(UnAuthenticated);
+
+
+		private async void Authenticated()
 		{
-			set { SetProperty(ref _destination, value); }
-			get { return _destination; }
+			await NavigationService.GoBackAsync(
+				new NavigationParameters()
+				{
+					{ "authenticated", _onAuth }
+				});
 		}
 
-
-		public DelegateCommand CloseCommand => new DelegateCommand(Close);
-
-
-		public DelegateCommand CancelCommand => new DelegateCommand(async () => await NavigationService.GoBackAsync());
-
-
-		private async void Close()
+		private async void UnAuthenticated()
 		{
-			if (!string.IsNullOrEmpty(_destination))
-			{
-				await NavigationService.GoBackAsync(
-					new NavigationParameters()
-					{
-						{ "destination", _destination }
-					});
-			}
-			else
-			{
-				await NavigationService.GoBackAsync();
-			}
+			await NavigationService.GoBackAsync(
+				new NavigationParameters()
+				{
+					{ "failed-authentication", _onNoAuth }
+				});
 		}
 	}
 }

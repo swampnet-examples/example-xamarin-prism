@@ -8,7 +8,17 @@ namespace PrismApp.Views
         public ModalPage()
         {
             InitializeComponent();
+
         }
+
+		protected override void OnAppearing()
+		{
+			base.OnAppearing();
+			if (string.IsNullOrEmpty(_pin.Text))
+			{
+				_pin.Focus();
+			}
+		}
 
 		protected override bool OnBackButtonPressed()
 		{

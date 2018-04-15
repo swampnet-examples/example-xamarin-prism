@@ -74,12 +74,16 @@ namespace PrismApp.ViewModels
 
 		private async void Speak()
 		{
+			await AuthenticateAsync(
+				async () => await _pageDialog.DisplayAlertAsync("Auth", "Authenticated", "ok"),
+				async () => await _pageDialog.DisplayAlertAsync("Auth", "Failed auth", "ok")
+				);
 			//await _pageDialog.DisplayAlertAsync("My Alert", "The message " + _batteryService.GetBatteryStatus(), "ok");
 			//await _pageDialog.DisplayActionSheetAsync("My Action Sheet", "cancel", "destroy");
 
 			try
 			{
-				await Scan();
+				//await Scan();
 				//await Photo();
 			}
 			catch (Exception ex)
