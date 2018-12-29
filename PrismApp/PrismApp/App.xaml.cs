@@ -52,6 +52,7 @@ namespace PrismApp
 			containerRegistry.RegisterForNavigation<PrintLabelPage>();
 			containerRegistry.RegisterForNavigation<LogHistoryPage>();
 			containerRegistry.RegisterForNavigation<ModalPage>();
-		}
+            containerRegistry.RegisterForNavigation<SqliteTestPage, SqliteTestPageViewModel>();
+        }
     }
 }

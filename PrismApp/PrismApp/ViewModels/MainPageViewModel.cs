@@ -29,8 +29,9 @@ namespace PrismApp.ViewModels
 			Items.Add(new SomeItem() { Title = "Print Label", Command = new DelegateCommand(NavigateToPrintLabelPage) });
 			Items.Add(new SomeItem() { Title = "Log History", Command = new DelegateCommand(NavigateToLogHistoryPage) });
 			Items.Add(new SomeItem() { Title = "Modal", Command = new DelegateCommand(NavigateToModalPage) });
+            Items.Add(new SomeItem() { Title = "Sqlite Test", Command = new DelegateCommand(async () => await NavigationService.NavigateAsync("SqliteTestPage"))});
 
-			for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
 			{
 				Items.Add(new SomeItem() { Title = $"pj  - {i:000}", Command = new DelegateCommand(NavigateToSpeakPage) });
 			}
