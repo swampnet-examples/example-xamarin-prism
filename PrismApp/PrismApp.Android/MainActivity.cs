@@ -22,7 +22,8 @@ namespace PrismApp.Droid
 
             base.OnCreate(bundle);
 
-			Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
+            Xamarin.Essentials.Platform.Init(this, bundle);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Activity = this;
 			ZXing.Net.Mobile.Forms.Android.Platform.Init();
 			Rg.Plugins.Popup.Popup.Init(this, bundle);
 
@@ -32,7 +33,8 @@ namespace PrismApp.Droid
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
 		{
-			PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
 			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 		}
