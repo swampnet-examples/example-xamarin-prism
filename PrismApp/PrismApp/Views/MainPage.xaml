@@ -7,13 +7,13 @@
              Title="{Binding Title}">
 
 	<Grid>
-		<Image Source="{local:ImageResource PrismApp.Resources.peanuts.jpg}"/>
+		<Image Source="{local:ImageResource PrismApp.Resources.peanuts.jpg}" />
 		<ScrollView BackgroundColor="Transparent">
 			<controls:BindableStackLayout ItemsSource="{Binding Items}" BackgroundColor="Transparent">
 				<controls:BindableStackLayout.ItemTemplate>
 					<DataTemplate>
-						<ContentView Padding="5" HeightRequest="100">
-							<Button Text="{Binding Title}" Command="{Binding Command}" Margin="5" Opacity="0.9"/>
+						<ContentView Padding="2" HeightRequest="100">
+							<Button Text="{Binding Title}" Command="{Binding Command}" Margin="3" Opacity="0.9"/>
 						</ContentView>
 					</DataTemplate>
 				</controls:BindableStackLayout.ItemTemplate>

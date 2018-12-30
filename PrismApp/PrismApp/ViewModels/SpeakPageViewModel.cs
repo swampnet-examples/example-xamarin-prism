@@ -8,13 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PrismApp.ViewModels
 {
 	public class SpeakPageViewModel : ViewModelBase
 	{
-		private string _textToSay = "Hello Prism";
+		private string _textToSay = "Sophie Whitby, go and tidy your room!";
 		public string TextToSay
 		{
 			get { return _textToSay; }
@@ -72,19 +73,20 @@ namespace PrismApp.ViewModels
 
 		private async void Speak()
 		{
-			await AuthenticateAsync(
-				async () => await _pageDialog.DisplayAlertAsync("Auth", "Authenticated", "ok"),
-				async () => await _pageDialog.DisplayAlertAsync("Auth", "Failed auth", "ok")
-				);
+			//await AuthenticateAsync(
+			//	async () => await _pageDialog.DisplayAlertAsync("Auth", "Authenticated", "ok"),
+			//	async () => await _pageDialog.DisplayAlertAsync("Auth", "Failed auth", "ok")
+			//	);
 			//await _pageDialog.DisplayAlertAsync("My Alert", "The message " + _batteryService.GetBatteryStatus(), "ok");
 			//await _pageDialog.DisplayActionSheetAsync("My Action Sheet", "cancel", "destroy");
 
 			try
 			{
-				//await Scan();
-				//await Photo();
-			}
-			catch (Exception ex)
+                await TextToSpeech.SpeakAsync(TextToSay);
+                //await Scan();
+                //await Photo();
+            }
+            catch (Exception ex)
 			{
 				await _pageDialog.DisplayAlertAsync("Error", ex.Message, "oops");
 				Log.Error(ex, ex.Message);

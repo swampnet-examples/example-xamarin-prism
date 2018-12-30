@@ -15,10 +15,10 @@
 				<Label Text="{Binding Date}" />
 			</StackLayout>
 
-			<StackLayout Orientation="Horizontal">
+			<!--<StackLayout Orientation="Horizontal">
 				<Label Text="Time" />
 				<Label Text="{Binding Time}" />
-			</StackLayout>
+			</StackLayout>-->
 
 			<Image Source="{local:ImageResource PrismApp.Resources.sjsofa.JPG}"/>
 		</StackLayout>

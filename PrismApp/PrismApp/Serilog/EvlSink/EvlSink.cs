@@ -10,6 +10,7 @@ using Serilog.Debugging;
 using System.Diagnostics;
 using System.Reflection;
 using PrismApp;
+using Xamarin.Essentials;
 
 namespace PrismApp.EvlSink
 {

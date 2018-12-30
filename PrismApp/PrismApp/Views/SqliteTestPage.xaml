@@ -4,9 +4,16 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismApp.Views.SqliteTestPage"
-             x:Name="_layoutRoot">
+             x:Name="_layoutRoot"
+             Title="SQLite Test">
     <Grid>
-        <ListView ItemsSource="{Binding Departments}" HasUnevenRows="True" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <ListView 
+            ItemsSource="{Binding Departments}" 
+            HasUnevenRows="True" 
+            SelectionMode="None"
+            IsPullToRefreshEnabled="True" 
+            RefreshCommand="{Binding RefreshCommand}" 
+            IsRefreshing="{Binding IsRefreshing}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

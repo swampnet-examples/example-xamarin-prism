@@ -25,9 +25,16 @@ namespace PrismApp.ViewModels
         public bool IsRefreshing
         {
             get { return _isRefreshing; }
-            set { SetProperty(ref _isRefreshing, value); }
+            set
+            {
+                if(SetProperty(ref _isRefreshing, value))
+                {
+                    RaisePropertyChanged("CanRefresh");
+                }
+            }
         }
 
+        public bool CanRefresh => !IsRefreshing;
 
         private ObservableCollection<Department> _departments;
 
@@ -56,7 +63,7 @@ namespace PrismApp.ViewModels
 
 
         private DelegateCommand _refreshCommand;
-        public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(Refresh));
+        public DelegateCommand RefreshCommand => _refreshCommand ?? (_refreshCommand = new DelegateCommand(Refresh).ObservesCanExecute(() => CanRefresh));
 
         private async void Refresh()
         {
