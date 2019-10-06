@@ -4,11 +4,11 @@ using PrismApp.ViewModels;
 using PrismApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Prism.Autofac;
 using Serilog;
 using PrismApp.HistorySink;
 using System;
 using Prism.Plugin.Popups;
+using Prism.Unity;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace PrismApp
