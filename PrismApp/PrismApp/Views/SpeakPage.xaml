@@ -9,8 +9,8 @@
 		<StackLayout VerticalOptions="CenterAndExpand">
 			<Entry Text="{Binding TextToSay}" />
 			<Button Text="Speak" Command="{Binding SpeakCommand}"/>
-
-			<StackLayout Orientation="Horizontal">
+            <Button Text="Nav RandD" Command="{Binding NavigateToNavRandDPageCommand}"/>
+            <StackLayout Orientation="Horizontal">
 				<Label Text="Date" />
 				<Label Text="{Binding Date}" />
 			</StackLayout>

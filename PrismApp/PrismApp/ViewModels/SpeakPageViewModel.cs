@@ -131,5 +131,15 @@ namespace PrismApp.ViewModels
 				return stream;
 			});
 		}
-	}
+
+
+        private DelegateCommand _navigateRandDCommand;
+        public DelegateCommand NavigateToNavRandDPageCommand =>
+            _navigateRandDCommand ?? (_navigateRandDCommand = new DelegateCommand(NavigateToNavRandDPage));
+
+        private async void NavigateToNavRandDPage()
+        {
+            await NavigationService.NavigateAsync("BrowsePage/BrowseContentPage?id=1/BrowseContentPage?id=2/BrowseContentPage?id=3/BrowseContentPage?id=4", null, true);
+        }
+    }
 }
