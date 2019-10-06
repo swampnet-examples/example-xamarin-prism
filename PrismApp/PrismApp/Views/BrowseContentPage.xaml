@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="PrismApp.Views.BrowseContentPage">
+             x:Class="PrismApp.Views.BrowseContentPage"
+             Title="{Binding Id}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text ="Cancel" Priority="0" Order="Primary" Command="{Binding CancelCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <StackLayout Orientation="Vertical">
-        <Label Text="Browse content page" HorizontalTextAlignment="Center" BackgroundColor="LightYellow"></Label>
+        <Label Text="Browse content page" HorizontalTextAlignment="Center" BackgroundColor="LightYellow" FontSize="Title"></Label>
         <Label Text="{Binding Id}" HorizontalTextAlignment="Center" FontSize="Title"></Label>
     </StackLayout>
 </ContentPage>

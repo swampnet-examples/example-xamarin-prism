@@ -9,9 +9,11 @@ namespace PrismApp.ViewModels
 {
     public class BrowseContentPageViewModel : BindableBase, IInitialize
     {
-        public BrowseContentPageViewModel()
-        {
+        private readonly INavigationService _navigationService;
 
+        public BrowseContentPageViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -24,6 +26,16 @@ namespace PrismApp.ViewModels
         {
             get { return _id; }
             set { SetProperty(ref _id, value); }
+        }
+
+        private DelegateCommand _cancelCommand;
+
+        public DelegateCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new DelegateCommand(Cancel));
+
+        private async void Cancel()
+        {
+            await _navigationService.GoBackToRootAsync();
+            await _navigationService.GoBackAsync();
         }
     }
 }
