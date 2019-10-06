@@ -50,7 +50,7 @@ namespace PrismApp.ViewModels
 
         private async void NavigateToNavRandDPage()
         {
-            await NavigationService.NavigateAsync("BrowsePage/BrowseContentPage", null, true);
+            await NavigationService.NavigateAsync("BrowsePage/BrowseContentPage?id=1/BrowseContentPage?id=2/BrowseContentPage?id=3", null, true);
         }
 
 
