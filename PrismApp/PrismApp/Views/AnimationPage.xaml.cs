@@ -81,6 +81,7 @@ namespace PrismApp.Views
                 LayoutRoot.FadeTo(0, 1000, Easing.CubicOut)
             });
 
+
             BooshButton.Text = DateTime.Now.ToString();
 
             await Task.WhenAll(new[] {
