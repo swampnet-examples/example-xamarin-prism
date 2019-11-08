@@ -55,6 +55,7 @@ namespace PrismApp
             containerRegistry.RegisterForNavigation<SqliteTestPage, SqliteTestPageViewModel>();
             containerRegistry.RegisterForNavigation<BrowsePage, BrowsePageViewModel>();
             containerRegistry.RegisterForNavigation<BrowseContentPage, BrowseContentPageViewModel>();
+            containerRegistry.RegisterForNavigation<AnimationPage, AnimationPageViewModel>();
         }
     }
 }

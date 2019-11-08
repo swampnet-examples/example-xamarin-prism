@@ -7,6 +7,7 @@
              Title="{Binding Title}">
 
 	<Grid>
+        
 		<Image Source="{local:ImageResource PrismApp.Resources.peanuts.jpg}" />
 		<ScrollView BackgroundColor="Transparent">
 			<controls:BindableStackLayout ItemsSource="{Binding Items}" BackgroundColor="Transparent">
